@@ -1,7 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
 
 # Create your models here.
+
+
 class Book(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
@@ -11,12 +16,14 @@ class Book(models.Model):
     daily_txt_reminders = models.BooleanField(default=False)
     weekly_txt_summary = models.BooleanField(default=False)
 
+
 class Chapter(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=150)
     chapter_number = models.IntegerField()
     updated = models.DateTimeField(auto_now=True)
+
 
 class Paragraph(models.Model):
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
@@ -35,8 +42,3 @@ class Paragraph(models.Model):
     sentence_10 = models.CharField(max_length=150)
     sentence_11 = models.CharField(max_length=150)
     sentence_12 = models.CharField(max_length=150)
-
-    
-    
-
-
