@@ -132,3 +132,4 @@ local_settings.py
 drf_jwt_capstone_backend/local_settings.py
 
 .idea/
+.vscode/
